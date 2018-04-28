@@ -1,0 +1,58 @@
+<div class="container clearfix">
+    <div class="row">
+        <div class="col-3">
+            <div class="chat-list">
+                {{#each chatList}}
+                    <section class="chat__item">
+                        <a href="/chat/{{ _id }}">{{name}}</a>
+                    </section>
+                {{/each}}
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addChatModal">
+                    Add chat
+                </button>
+            </div>
+        </div>
+        <div class="col-9">
+            <p>You are currently logged in as {{user.email}}</p>
+            <div class="j-result">
+                {{#each messageList}}
+                    <p><strong>{{../user.email}}</strong> - {{ text }}</p>
+                {{/each}}
+            </div>
+            <input type="text" class="j-msg">
+            <button class="j-send-btn">Send</button>
+            <a href="/chat/{{ currentChat._id }}/link">Get link</a>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="addChatModal" tabindex="-1" role="dialog" aria-labelledby="addChatModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form action="/chat" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addChatModal">Add chat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="chatName">Name</label>
+                        <input name="name" type="text" class="form-control" id="chatName" aria-describedby="emailHelp" placeholder="Enter name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/index.min.js"></script>
+<style>
+    .chat-list {
+        border: 1px solid black;
+        height: 100%;
+    }
+</style>
